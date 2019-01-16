@@ -1,12 +1,12 @@
-import { Tamagatchi } from './tamagatchi';
-import { Ui } from './uiTamagatchi';
+import { Portfolio } from './portfolio';
+import { Ui } from './uiPortfolio';
 // import { giphy } from './giphy_api'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import './styles.css';
 
 
-let game = new Tamagatchi();
+let game = new Portfolio();
 
 document.addEventListener('readystatechange', event => {
   if (event.target.readyState === 'interactive') {
