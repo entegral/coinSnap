@@ -13,7 +13,7 @@ class Coin {
     let lastYear = new Date();
     lastYear.setFullYear(lastYear.getFullYear() - 1);
     console.log(`ISO date: ${lastYear.toISOString()}`);
-    const url = `https://api.coinpaprika.com/v1/coins/${this.apiSymbol}/ohlcv/historical?start=${today.toISOString()}&end=${lastYear.toISOString()}`;
+    const url = `https://api.coinpaprika.com/v1/coins/${this.apiSymbol}/ohlcv/historical?start=${lastYear.toISOString()}&end=${today.toISOString()}`;
     let params = {};
     params.url = url;
     let promise = this.apiCall(params);
