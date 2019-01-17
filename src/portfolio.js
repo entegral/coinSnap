@@ -2,19 +2,19 @@ class Portfolio {
   constructor(params) {
     this.name = params['name'];
     this.description = params['description'];
-    this.historicalData = null;
+    this.coins = [];
+    this.availableCoins = this.getCoins();
     this.lastApiCall = null;
   }
 
-  updateHistoricalData(coinId, dateString){
-    const url = `https://api.coinpaprika.com/v1/coins/${coinId}/ohlcv/historical?start=${dateString}`;
+  getCoins(){
+    const url = `https://api.coinpaprika.com/v1/coins`;
     let params = {};
     params.url = url;
-    params.coinId = coinId;
     let promise = this.apiCall(params);
     promise.then((response) => {
-      this.historicalData = JSON.parse(response);
-      console.log(this.historicalData);
+      this.availableCoins = JSON.parse(response);
+      console.log(this.availableCoins);
     })
   }
 

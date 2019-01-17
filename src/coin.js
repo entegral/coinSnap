@@ -2,10 +2,11 @@ class Coin {
   constructor(params) {
     this.name = params['name'];
     this.symbol = params['symbol'];
-    this.apiSymbol = params['apiSymbol'];
+    this.apiSymbol = params['id'];
+    this.rank = params['rank'];
     this.marketValue = null;
-    this.historicalData = this.updateHistoricalData();
     this.lastApiCall = null;
+    this.historicalData = null;
   }
 
   updateHistoricalData(){

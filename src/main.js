@@ -6,22 +6,20 @@ import 'bootstrap';
 import './styles.css';
 
 
-let game = new Portfolio();
+let portfolio = new Portfolio();
 
 document.addEventListener('readystatechange', event => {
   if (event.target.readyState === 'interactive') {
 
-    document.getElementById('food-small').addEventListener('click', game.small);
-    document.getElementById('food-big').addEventListener('click', game.large);
+    document.getElementById('coinDropdown').append(Ui.renderDropdown(portfolio.availableCoins))
 
-    document.getElementById('play-small').addEventListener('click', game.smallPlay);
-    document.getElementById('play-big').addEventListener('click', game.bigPlay);
+    // document.getElementById('food-small').addEventListener('click', game.small);
+    // document.getElementById('food-big').addEventListener('click', game.large);
 
-    document.getElementById('sleep-small').addEventListener('click', game.smallSleep);
-    document.getElementById('sleep-big').addEventListener('click', function() {game.hibernate();});
+
 
     // let startRedraw;
-    game.drawInterval = setInterval(function () {Ui.rerender(game);}, 1000);
+    // game.drawInterval = setInterval(function () {Ui.rerender(game);}, 1000);
 
 
 
