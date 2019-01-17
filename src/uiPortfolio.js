@@ -37,6 +37,7 @@ let Ui = {
     let coin = JSON.parse(unparsedCoin);
     let cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
+    cardDiv.classList.add('coin');
     cardDiv.classList.add('text-center');
     cardDiv.setAttribute("style", "width: 18rem;");
     console.log("coin", coin);
@@ -51,7 +52,7 @@ let Ui = {
 
       </div>
       <div class="card-footer text-muted">
-        Whitepaper: ${coin.whitepaper}
+        <a href="${coin.whitepaper.link}">Whitepaper</a>
       </div>`;
     console.log(cardDiv);
     return cardDiv;

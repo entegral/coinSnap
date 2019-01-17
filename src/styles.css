@@ -20,3 +20,8 @@
 .tamagatchi-stats {
   padding-bottom: 10px;
 }
+
+.coin {
+  float: left;
+  margin: 10px;
+}
