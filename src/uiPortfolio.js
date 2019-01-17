@@ -4,15 +4,17 @@ let Ui = {
    let finalOutput = "";
    let tempCoin;
    let select = document.createElement("select");
-   for (let i = 1; i < coinsArray.length; i++){
-     tempCoin = this.findCoinByRank(coinsArray[i], i);
+   select.setAttribute("id", "coinSelect");
+
+   for (let i = 1; i < 51; i++){
+     tempCoin = this.findCoinByRank(coinsArray, i);
      let tempOption = document.createElement("option");
-     tempOption.innerHTML(tempCoin.name);
+     tempOption.innerHTML = tempCoin.name;
      tempOption.setAttribute("value", tempCoin.id);
-     finalOutput += `<option value=${tempCoin.id}>${tempCoin.name}</option>`;
-     console.log(`<option value=${tempCoin.id}>${tempCoin.name}</option>`);
+     select.appendChild(tempOption);
    }
-   return finalOutput;
+   select.append(finalOutput)
+   return select;
   },
 
   findCoinByRank: function(coinsArray, rank){
@@ -21,7 +23,16 @@ let Ui = {
         return coinsArray[i];
       }
     }
-  }
+  },
+
+  findCoinById: function(coinsArray, id){
+    for (let i = 0; i < coinsArray.length; i++){
+      if (coinsArray[i].id == id) {
+        return coinsArray[i];
+      }
+    }
+  },
+
 
 
 }

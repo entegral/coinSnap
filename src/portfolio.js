@@ -1,10 +1,21 @@
+import { Coin } from './coin'
+import { Ui } from './uiPortfolio'
+
 class Portfolio {
   constructor(params) {
     this.name = params['name'];
     this.description = params['description'];
     this.coins = [];
-    this.availableCoins = this.getCoins();
+    this.availableCoins = null;
     this.lastApiCall = null;
+  }
+
+  addCoin(id){
+    let coinJson = Ui.findCoinById(this.availableCoins, id);
+    let coin = new Coin(coinJson);
+    this.coins.push(coin);
+    console.log(this.coins);
+
   }
 
   getCoins(){
@@ -16,6 +27,7 @@ class Portfolio {
       this.availableCoins = JSON.parse(response);
       console.log(this.availableCoins);
     })
+    return promise;
   }
 
   apiCall(params) {

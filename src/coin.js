@@ -48,12 +48,4 @@ class Coin {
 }
 
 
-
-let params = {}
-params.name = 'bitcoin'
-params.symbol = 'btc'
-params.apiSymbol = 'btc-bitcoin'
-
-let btc = new Coin(params)
-
-export { Portfolio };
+export { Coin };

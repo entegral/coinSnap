@@ -6,14 +6,23 @@ import 'bootstrap';
 import './styles.css';
 
 
-let portfolio = new Portfolio();
+let portfolio = new Portfolio('test', 'test');
 
 document.addEventListener('readystatechange', event => {
   if (event.target.readyState === 'interactive') {
 
-    document.getElementById('coinDropdown').append(Ui.renderDropdown(portfolio.availableCoins))
+    let getCoinPromise = portfolio.getCoins();
+    getCoinPromise.then(function(response){
+      let dropdown = Ui.renderDropdown(portfolio.availableCoins);
+      document.getElementById('coinDropdown').append(dropdown);
+    });
 
-    // document.getElementById('food-small').addEventListener('click', game.small);
+    let coinForm = document.getElementById('coinForm');
+    coinForm.addEventListener('submit', function(event){
+      let coinId = document.getElementById('coinSelect').value;
+      event.preventDefault();
+      portfolio.addCoin(coinId);
+    });
     // document.getElementById('food-big').addEventListener('click', game.large);
 
 
