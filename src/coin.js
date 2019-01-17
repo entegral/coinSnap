@@ -4,9 +4,9 @@ class Coin {
     this.symbol = params['symbol'];
     this.apiSymbol = params['id'];
     this.rank = params['rank'];
-    this.marketValue = null;
-    this.lastApiCall = null;
-    this.historicalData = null;
+    this.description = params['description'];
+    this.logo = params['whitepaper'].thumbnail;
+    this.whitepaper = params.whitepaper;
   }
 
   updateHistoricalData(){

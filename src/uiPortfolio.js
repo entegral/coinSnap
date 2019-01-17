@@ -33,10 +33,32 @@ let Ui = {
     }
   },
 
+  createCoinCard: function(unparsedCoin){
+    let coin = JSON.parse(unparsedCoin);
+    let cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
+    cardDiv.classList.add('text-center');
+    cardDiv.setAttribute("style", "width: 18rem;");
+    console.log("coin", coin);
+    console.log("whitepaper:", coin.whitepaper);
+    cardDiv.innerHTML = `<div class="card-header">
+        ${coin.name}(${coin.symbol})
+      </div>
+      <img src="${coin.whitepaper.thumbnail}" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Market Capitilization Rank: ${coin.rank}</h5>
+        <p class="card-text">${coin.description}</p>
+
+      </div>
+      <div class="card-footer text-muted">
+        Whitepaper: ${coin.whitepaper}
+      </div>`;
+    console.log(cardDiv);
+    return cardDiv;
+  }
 
 
 }
-
 
 
 

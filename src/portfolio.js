@@ -11,11 +11,32 @@ class Portfolio {
   }
 
   addCoin(id){
+    console.log("adding coin to this.coins array");
     let coinJson = Ui.findCoinById(this.availableCoins, id);
-    let coin = new Coin(coinJson);
-    this.coins.push(coin);
-    console.log(this.coins);
+    let url = `https://api.coinpaprika.com/v1/coins/${coinJson.id}`
+    let params = {};
+    params.url = url;
+    let coinApiDataPromise = this.apiCall(params);
+    coinApiDataPromise.then((response) => {
+      let data = JSON.parse(response)
+      let coin = new Coin(data);
+      this.coins.push(coin);
+      console.log('coin added to this.coins array', this.coins);
+    });
+    return coinApiDataPromise;
+  }
 
+  findPorfolioCoinById(id){
+    console.log(`searching profile's coin array for ${id}` , this.coins);
+    let foundCoin;
+    for (let i = 0; i < this.coins.length; i++){
+      console.log('test', this.coins);
+      if (this.coins[i].apiSymbol == id) {
+        foundCoin = this.coins[i];
+      }
+    }
+    console.log("foundCoin: ",foundCoin);
+    return foundCoin;
   }
 
   getCoins(){
@@ -38,7 +59,6 @@ class Portfolio {
       console.log("pre-request url: " + url);
       request.onload = function() {
         if (this.status === 200) {
-          console.log(request.response);
           resolve(request.response);
         } else {
           console.log(request.statusText);

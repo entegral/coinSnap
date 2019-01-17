@@ -1,4 +1,5 @@
 import { Portfolio } from './portfolio';
+import { Coin } from './coin'
 import { Ui } from './uiPortfolio';
 // import { giphy } from './giphy_api'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,10 +19,17 @@ document.addEventListener('readystatechange', event => {
     });
 
     let coinForm = document.getElementById('coinForm');
+
     coinForm.addEventListener('submit', function(event){
       let coinId = document.getElementById('coinSelect').value;
       event.preventDefault();
-      portfolio.addCoin(coinId);
+
+      let addCoinCardPromise = portfolio.addCoin(coinId);
+      addCoinCardPromise
+      .then(function(promiseResult) {
+        console.log("newestCoin", promiseResult);
+          document.getElementById('coinCards').append(Ui.createCoinCard(promiseResult));
+      });
     });
     // document.getElementById('food-big').addEventListener('click', game.large);
 
