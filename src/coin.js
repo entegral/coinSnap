@@ -27,16 +27,16 @@ class Coin {
     let params = {};
     params.url = `https://api.coinpaprika.com/v1/coins/${this.apiSymbol}/ohlcv/latest/`;
     let ohlcPromise = this.apiCall(params);
-    ohlcPromise.then((unparsedResponse) => {
-      // console.log("unparsed = " + unparsedResponse);
-      let parsedJson = JSON.parse(unparsedResponse)[0];
-      this.open = parsedJson['open'];
-      this.high = parsedJson['high'];
-      this.low = parsedJson['low'];
-      this.close = parsedJson['close'];
-      this.volume = parsedJson['volume'];
-      this.marketcap = parsedJson['market_cap'];
-      });
+    // ohlcPromise.then((unparsedResponse) => {
+    //   // console.log("unparsed = " + unparsedResponse);
+    //   let parsedJson = JSON.parse(unparsedResponse)[0];
+    //   this.open = parsedJson['open'];
+    //   this.high = parsedJson['high'];
+    //   this.low = parsedJson['low'];
+    //   this.close = parsedJson['close'];
+    //   this.volume = parsedJson['volume'];
+    //   this.marketcap = parsedJson['market_cap'];
+    //   });
     // console.log('OHLC promise executed');
     return ohlcPromise;
   }
