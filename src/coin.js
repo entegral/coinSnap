@@ -7,6 +7,38 @@ class Coin {
     this.description = params['description'];
     this.logo = params['whitepaper'].thumbnail;
     this.whitepaper = params.whitepaper;
+    this.holdings = 5;
+    this.spotPrice = null;
+    this.high = 5;
+    this.low = 5;
+    this.open = 5;
+    this.close = 5;
+    this.volume = 5;
+    this.marketcap = 5;
+
+  }
+
+  updateHoldings(number){
+    this.holdings = number;
+  }
+
+  getOHLC(){
+    console.log("OHLC update called");
+    let params = {};
+    params.url = `https://api.coinpaprika.com/v1/coins/${this.apiSymbol}/ohlcv/latest/`;
+    let ohlcPromise = this.apiCall(params);
+    ohlcPromise.then((unparsedResponse) => {
+      // console.log("unparsed = " + unparsedResponse);
+      let parsedJson = JSON.parse(unparsedResponse)[0];
+      this.open = parsedJson['open'];
+      this.high = parsedJson['high'];
+      this.low = parsedJson['low'];
+      this.close = parsedJson['close'];
+      this.volume = parsedJson['volume'];
+      this.marketcap = parsedJson['market_cap'];
+      });
+    // console.log('OHLC promise executed');
+    return ohlcPromise;
   }
 
   updateHistoricalData(){
@@ -22,6 +54,7 @@ class Coin {
       this.historicalData = JSON.parse(response);
       console.log(this.historicalData);
     })
+    return promise;
   }
 
   apiCall(params) {
@@ -32,7 +65,6 @@ class Coin {
       console.log("pre-request url: " + url);
       request.onload = function() {
         if (this.status === 200) {
-          console.log(request.response);
           resolve(request.response);
         } else {
           console.log(request.statusText);

@@ -33,28 +33,32 @@ let Ui = {
     }
   },
 
-  createCoinCard: function(unparsedCoin){
-    let coin = JSON.parse(unparsedCoin);
+  createCoinCard: function(document, coin){
     let cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
     cardDiv.classList.add('coin');
     cardDiv.classList.add('text-center');
     cardDiv.setAttribute("style", "width: 18rem;");
-    console.log("coin", coin);
+    console.log("coin", coin.high);
+    console.log("open", Object.getOwnPropertyNames(coin), coin, coin.low, coin.open, coin.close);
+    console.log("rank", coin.rank);
     console.log("whitepaper:", coin.whitepaper);
-    cardDiv.innerHTML = `<div class="card-header">
-        ${coin.name}(${coin.symbol})
-      </div>
-      <img src="${coin.whitepaper.thumbnail}" alt="">
+    cardDiv.innerHTML = `<div class="card-header">${coin.name}(${coin.symbol})</div>
       <div class="card-body">
         <h5 class="card-title">Market Capitilization Rank: ${coin.rank}</h5>
+        <p class="card-text">Price at open: ${coin.open}</p>
+        <p class="card-text">Price at close: ${coin.close}</p>
+        <p class="card-text">Daily High: ${coin.high}</p>
+        <p class="card-text">Daily Low: ${coin.low}</p>
+        <p class="card-text">24h Volume: ${coin.volume}</p>
+        <p class="card-text">Marketcap: ${coin.marketcap}</p>
         <p class="card-text">${coin.description}</p>
-
       </div>
       <div class="card-footer text-muted">
         <a href="${coin.whitepaper.link}">Whitepaper</a>
       </div>`;
-    console.log(cardDiv);
+      document.getElementById('coinCards').append(cardDiv);
+
     return cardDiv;
   }
 
