@@ -25,4 +25,4 @@ $ npm run start
 _GitHub, JS, jQuery, Bootstrap, NPM, webpack, Jasmine, Karma_
 
 ### License
-Copyright (c) 2018 **_RB_** GNU General Public License 3.0
+Copyright (c) 2019 **_RB_** GNU General Public License 3.0
