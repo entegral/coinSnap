@@ -15,10 +15,10 @@
   ```
 
 * To open the application in Chrome, use command
-```
-$ npm install
-$ npm run start
-```
+  ```
+  $ npm install
+  $ npm run start
+  ```
 
 
 ## Technologies Used
